@@ -7,7 +7,10 @@ image.addEventListener('load', function(){
     canvas.width = 480;
     canvas.height = 640;
 
+    //changing the opacity, you will change the accuracy of the drawn image.
     var opacity = 0.2;
+    //the lower you go the more blurry the image will be drawn. The optimal values are : -1, 0, 1.
+    var particleSize = 1;
 
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -15,7 +18,7 @@ image.addEventListener('load', function(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     let particlesArray = [];
-    const numberOfParticles = 5000;
+    const numberOfParticles = 8000;
 
     let mappedImage = [];
     for (let y = 0; y < canvas.height; y++) {
@@ -47,7 +50,7 @@ image.addEventListener('load', function(){
             this.y = 0;
             this.speed = 0;
             this.velocity = Math.random() * 0.5;
-            this.size = Math.random() * 1.5 + 1;
+            this.size = Math.random() * 1.5 + 1 - particleSize;
             this.position1 = Math.floor(this.y);
             this.position2 = Math.floor(this.x);
         }
