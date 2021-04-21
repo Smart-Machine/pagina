@@ -4,21 +4,26 @@ image.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAAKACAYAAABEyKtSA
 image.addEventListener('load', function(){
     const canvas = document.getElementById('canvas1');
     const ctx = canvas.getContext('2d');
+
+    //the width and height should be the same size as the image, in order to avoid collision and distortion.
     canvas.width = 480;
     canvas.height = 640;
-
     //changing the opacity, you will change the accuracy of the drawn image.
     var opacity = 0.2;
     //the lower you go the more blurry the image will be drawn. The optimal values are : -1, 0, 1.
     var particleSize = 1;
+    //give it a string with the name of the color to change the particles' color.
+    var particleColor = 'white';
+    //the optimal number of particles is <8000>, you can go with <5000> or higher, but it dicreases the performence.
+    const numberOfParticles = 8000;
 
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    // do you want to see the image?
+
+    // do you want to see the image at the begining?
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     let particlesArray = [];
-    const numberOfParticles = 8000;
 
     let mappedImage = [];
     for (let y = 0; y < canvas.height; y++) {
@@ -68,7 +73,7 @@ image.addEventListener('load', function(){
         }
         draw() {
             ctx.beginPath();
-            ctx.fillStyle = 'white';
+            ctx.fillStyle = particleColor;
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
         }   
@@ -83,7 +88,7 @@ image.addEventListener('load', function(){
 
     function animate() {
         ctx.globalAlpha = 0.05;
-        ctx.fillStyle = 'rgb(0, 0, 0)';
+        ctx.fillStyle = '#000000';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.globalAlpha = 0.2;
         for (let i = 0; i < particlesArray.length; i++) {
@@ -93,6 +98,5 @@ image.addEventListener('load', function(){
         }
         requestAnimationFrame(animate);
     }
-
     animate();
 });
