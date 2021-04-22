@@ -2,6 +2,15 @@ body {
   background: black;
 }
 
+#main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 780px;
+}
+
 #canvas1 {
   border: 3px solid white;
   top: 50%;
@@ -10,4 +19,36 @@ body {
   width: auto;
   height: auto;
   transform: translate(-50%, -50%);
+}
+
+#number {
+  position: fixed;
+  bottom: 0;
+  color: white;
+  width: max-content;
+  margin-left: 47%;
+  font-family: 'Handlee', cursive;
+}
+
+button {
+  background-color: white;
+  cursor: pointer;
+  outline: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 1.3em;
+  top: 50%;
+  font-size: 20px;
+  font-weight: 500px;
+  background: url(../stafcik/arrow.png);
+}
+
+#left {
+  position: relative;
+  float: left;
+}
+
+#right {
+  position: relative;
+  float: right;
 }
