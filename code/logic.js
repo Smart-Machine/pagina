@@ -182,5 +182,4 @@ function update() {
     }
     previous = current;
 }
-update()
 
